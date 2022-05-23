@@ -3,7 +3,7 @@
 import pytest
 from tennis import TennisGame1
 
-from tennis_unittest import test_cases, play_game
+from tennis_unit_test import test_cases, play_game
 
 class TestTennis:
 
