@@ -27,13 +27,13 @@ class TennisGame1:
             }.get(self.player1_points, "Deuce")
         elif self.almost_one_of_the_players_is_winning():
             if self.advantage_for_player_1():
-                result = "Advantage " + self.player1_name
-            elif self.advantage_for_player_2():
-                result = "Advantage " + self.player2_name
-            elif self.player1_won():
-                result = "Win for " + self.player1_name
-            else:
-                result = "Win for " + self.player2_name
+                return "Advantage " + self.player1_name
+            if self.advantage_for_player_2():
+                return "Advantage " + self.player2_name
+            if self.player1_won():
+                return "Win for " + self.player1_name
+            if self.player2_won():
+                return "Win for " + self.player2_name
         else:
             for i in range(1,3):
                 if (i==1):
@@ -60,3 +60,6 @@ class TennisGame1:
 
     def player1_won(self):
         return self.player1_points - self.player2_points >= 2
+
+    def player2_won(self):
+        return self.player2_points - self.player1_points >= 2
