@@ -16,6 +16,7 @@ class TennisGame1:
 
     def score(self):
         score = Score(self.player1_points, self.player2_points)
+
         if score.is_love_all():
             return "Love-All"
         if score.is_fifteen_all():
@@ -24,29 +25,26 @@ class TennisGame1:
             return "Thirty-All"
         if score.players_have_tied_score():
             return "Deuce"
-
         if score.advantage_for_player_1():
             return "Advantage " + self.player1_name
         if score.advantage_for_player_2():
             return "Advantage " + self.player2_name
         if score.player1_won():
             return "Win for " + self.player1_name
+        if score.player2_won():
+            return "Win for " + self.player2_name
 
-        if score.almost_one_of_the_players_is_winning():
-            if score.player2_won():
-                return "Win for " + self.player2_name
-        else:
-            result = ""
-            points_names = {
-                0: "Love",
-                1: "Fifteen",
-                2: "Thirty",
-                3: "Forty",
-            }
-            result += points_names[self.player1_points]
-            result += "-"
-            result += points_names[self.player2_points]
-            return result
+        result = ""
+        points_names = {
+            0: "Love",
+            1: "Fifteen",
+            2: "Thirty",
+            3: "Forty",
+        }
+        result += points_names[self.player1_points]
+        result += "-"
+        result += points_names[self.player2_points]
+        return result
 
 
 class Score:
@@ -73,7 +71,8 @@ class Score:
                self.player1_points - self.player2_points >= 2
 
     def player2_won(self):
-        return self.player2_points - self.player1_points >= 2
+        return self.almost_one_of_the_players_is_winning() and \
+               self.player2_points - self.player1_points >= 2
 
     def is_love_all(self):
         return self.player1_points == self.player2_points == 0
