@@ -14,11 +14,9 @@ class TennisGame1:
         else:
             self.player2_points += 1
 
-    def players_have_tied_score(self):
-        return self.player1_points==self.player2_points
-
     def score(self):
-        if self.players_have_tied_score():
+        score = Score(self.player1_points, self.player2_points)
+        if score.players_have_tied_score():
             return {
                 0: "Love-All",
                 1: "Fifteen-All",
@@ -60,3 +58,13 @@ class TennisGame1:
 
     def player2_won(self):
         return self.player2_points - self.player1_points >= 2
+
+
+class Score:
+    def __init__(self, player1_points, player2_points):
+        self.player1_points = player1_points
+        self.player2_points = player2_points
+
+    def players_have_tied_score(self):
+        return self.player1_points == self.player2_points
+
