@@ -16,12 +16,11 @@ class TennisGame1:
     
     def score(self):
         result = ""
-        tempScore=0
         if (self.player1_points==self.player2_points):
             result = {
-                0 : "Love-All",
-                1 : "Fifteen-All",
-                2 : "Thirty-All",
+                0: "Love-All",
+                1: "Fifteen-All",
+                2: "Thirty-All",
             }.get(self.player1_points, "Deuce")
         elif (self.player1_points >= 4 or self.player2_points >= 4):
             minusResult = self.player1_points - self.player2_points
