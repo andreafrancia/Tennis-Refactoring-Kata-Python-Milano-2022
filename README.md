@@ -25,6 +25,21 @@ How to refactor:
 * remove non-needed complexity
 * improve tests
 
+Simple Design
+=============
+The code is simple when:
+1. passes all tests
+2. contains no duplicated logic
+3. express all programmer intents
+4. small
+
+https://www.manning.com/books/the-mikado-method
+
+https://cumulative-hypotheses.org/2011/08/30/tdd-as-if-you-meant-it/
+
+
+
+
 Names:
 ======
 draw -> pareggio
