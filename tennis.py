@@ -22,14 +22,14 @@ class TennisGame1:
                 1: "Fifteen-All",
                 2: "Thirty-All",
             }.get(self.player1_points, "Deuce")
-        elif self.almost_one_of_the_players_is_winning():
-            if self.advantage_for_player_1():
+        elif score.almost_one_of_the_players_is_winning():
+            if score.advantage_for_player_1():
                 return "Advantage " + self.player1_name
-            if self.advantage_for_player_2():
+            if score.advantage_for_player_2():
                 return "Advantage " + self.player2_name
-            if self.player1_won():
+            if score.player1_won():
                 return "Win for " + self.player1_name
-            if self.player2_won():
+            if score.player2_won():
                 return "Win for " + self.player2_name
         else:
             result = ""
@@ -43,6 +43,15 @@ class TennisGame1:
             result += "-"
             result += points_names[self.player2_points]
             return result
+
+
+class Score:
+    def __init__(self, player1_points, player2_points):
+        self.player1_points = player1_points
+        self.player2_points = player2_points
+
+    def players_have_tied_score(self):
+        return self.player1_points == self.player2_points
 
     def almost_one_of_the_players_is_winning(self):
         return self.player1_points >= 4 or self.player2_points >= 4
@@ -58,13 +67,4 @@ class TennisGame1:
 
     def player2_won(self):
         return self.player2_points - self.player1_points >= 2
-
-
-class Score:
-    def __init__(self, player1_points, player2_points):
-        self.player1_points = player1_points
-        self.player2_points = player2_points
-
-    def players_have_tied_score(self):
-        return self.player1_points == self.player2_points
 
