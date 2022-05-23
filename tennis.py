@@ -25,16 +25,16 @@ class TennisGame1:
                 1: "Fifteen-All",
                 2: "Thirty-All",
             }.get(self.player1_points, "Deuce")
-        elif (self.player1_points >= 4 or self.player2_points >= 4):
-            minusResult = self.player1_points - self.player2_points
-            if (minusResult==1):
-                result ="Advantage " + self.player1_name
-            elif (minusResult ==-1):
-                result ="Advantage " + self.player2_name
-            elif (minusResult>=2):
+        elif self.almost_one_of_the_players_is_winning():
+            advantage = self.player1_points - self.player2_points
+            if advantage == 1:
+                result = "Advantage " + self.player1_name
+            elif advantage == -1:
+                result = "Advantage " + self.player2_name
+            elif advantage >= 2:
                 result = "Win for " + self.player1_name
             else:
-                result ="Win for " + self.player2_name
+                result = "Win for " + self.player2_name
         else:
             for i in range(1,3):
                 if (i==1):
@@ -49,3 +49,6 @@ class TennisGame1:
                     3 : "Forty",
                 }[tempScore]
         return result
+
+    def almost_one_of_the_players_is_winning(self):
+        return self.player1_points >= 4 or self.player2_points >= 4
