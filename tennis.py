@@ -13,10 +13,13 @@ class TennisGame1:
             self.player1_points += 1
         else:
             self.player2_points += 1
-    
+
+    def players_have_tied_score(self):
+        return self.player1_points==self.player2_points
+
     def score(self):
         result = ""
-        if (self.player1_points==self.player2_points):
+        if self.players_have_tied_score():
             result = {
                 0: "Love-All",
                 1: "Fifteen-All",
