@@ -56,7 +56,7 @@ class TestTennis:
 
     @pytest.mark.parametrize('p1Points p2Points score p1Name p2Name'.split(), test_cases)
     def test_get_score_game1(self, p1Points, p2Points, score, p1Name, p2Name):
-        game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
+        game = play_game(p1Points, p2Points, p1Name, p2Name)
         assert score == game.score()
 
 
@@ -65,12 +65,12 @@ class TestTennis2(unittest.TestCase):
     def test_Score_Game1(self):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(TennisGame1, p1Points, p2Points, p1Name, p2Name)
+            game = play_game(p1Points, p2Points, p1Name, p2Name)
             self.assertEqual(score, game.score())
 
 
-def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
-    game = TennisGame(p1Name, p2Name)
+def play_game(p1Points, p2Points, p1Name, p2Name):
+    game = TennisGame1(p1Name, p2Name)
     for i in range(max(p1Points, p2Points)):
         if i < p1Points:
             game.won_point(p1Name)
