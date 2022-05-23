@@ -18,9 +18,8 @@ class TennisGame1:
         return self.player1_points==self.player2_points
 
     def score(self):
-        result = ""
         if self.players_have_tied_score():
-            result = {
+            return {
                 0: "Love-All",
                 1: "Fifteen-All",
                 2: "Thirty-All",
@@ -35,19 +34,17 @@ class TennisGame1:
             if self.player2_won():
                 return "Win for " + self.player2_name
         else:
-            for i in range(1,3):
-                if (i==1):
-                    tempScore = self.player1_points
-                else:
-                    result+="-"
-                    tempScore = self.player2_points
-                result += {
-                    0 : "Love",
-                    1 : "Fifteen",
-                    2 : "Thirty",
-                    3 : "Forty",
-                }[tempScore]
-        return result
+            result = ""
+            points_names = {
+                0: "Love",
+                1: "Fifteen",
+                2: "Thirty",
+                3: "Forty",
+            }
+            result += points_names[self.player1_points]
+            result += "-"
+            result += points_names[self.player2_points]
+            return result
 
     def almost_one_of_the_players_is_winning(self):
         return self.player1_points >= 4 or self.player2_points >= 4
